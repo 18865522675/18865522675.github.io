@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>互动星空</title>
+<title>温州彭于晏</title>
 
 <style>
 html,body {
@@ -13,6 +13,7 @@ html,body {
 	cursor:none;
 	background:black;
 	background:linear-gradient(to bottom,#000000 0%,#5788fe 100%);
+	font-family: "微软雅黑";
 }
 .filter {
 	width:100%;
@@ -45,13 +46,154 @@ background-image:url('img/xkbg.png');
 	background-repeat:repeat-x;
 	background-position:center bottom;
 }
+.wrap{
+	position: relative;
+}
+.con{
+	width:1000px;
+	/*background: red;*/
+	border: 1px solid gray;
+	
+	min-height: 800px;
+	position: absolute;
+	cursor: pointer;
+	top:5px;
+	left:50%;
+	transform: translateX(-500px);
+	box-sizing: border-box;
+	padding: 10px;
+}
+.mid{
+	height:800px;
+	/*background: orange;*/
+	border: 1px solid gray;
+	border-radius: 6px;
+	margin-top: 10px;
+	box-sizing: border-box;
+	padding: 10px;
+	overflow-y: scroll;
+}
+.clear:after{
+	display: block;
+	clear: both;
+	content: '\20';
+}
+.title{
+	/*float: left;*/
+	text-shadow:6px 6px 6px #00FF00;
+	font-size: 40px;
+	color:white;
+	opacity: 0.6;
+	
+}
+.subtitle{
+	color:gray;
+	font-size-adjust: 12px;
+	line-height:30px;
+	width:600px;
+	/*background: orange;*/
+	margin: 0 auto;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+.picwrap{
+	width:200px;
+	height: 200px;
+	float: left;
+	width:30%;
+	overflow: hidden;
+}
+.picwrap img{
+	width:100%;
+	height: 100%;
+	transition: all .5s; 
+}
+.picwrap img:hover{
+	transform: scale(1.5);
+}
+
+.midhead{
+	display: flex;
+	justify-content:space-around;
+}
+.midmid{
+	box-sizing:border-box;
+	padding:10px;
+}
+.midmid .midtitle{
+	font-size: 16px;
+	color:gray;
+	
+}
+.midcon{
+	font-size: 14px;
+	color:gray;
+	line-height:25px;
+}
 </style>
 </head>
 <body>
 
+<div class="wrap">
+<audio src="./bgm.mp3" style="display: none;" autoplay="autoplay" loop="loop"></audio>
 <div class="landscape"></div>
 <div class="filter"></div>
 <canvas id="canvas"></canvas>
+<div class="con">
+	<div class="header clear" style="text-align: center!important;position: relative;height: 150px;">
+		<div claas="h_imgwrap" style="width:150px;height: 150px;position: absolute;left:0;top: 0;">
+			<img src="logo.jpg" alt="" style="width:100%;height:100%;border-radius: 6px;" />
+		</div>
+		<div class="title">
+			朱斌杰博客
+		</div>
+		<div class="subtitle">
+			记录生活，点点滴滴
+			<br />
+			本人是一个前端代码狗,95年生,未婚<br />
+			爱好篮球(不打多年),游戏(许久不玩),滑板(生了病没法玩),实在憋得慌，写了个个人博客
+		</div>
+	</div>
+	<div class="mid">
+		<div class="midhead  clear">
+			<div class="picwrap">
+				<a href="http://www.iqiyi.com/a_19rrhay4z1.html?vfm=2008_aldbd"><img src="pic1.jpg"></a>
+			
+			</div>
+			<!--http://www.iqiyi.com/a_19rrhay4z1.html?vfm=2008_aldbd-->
+			<div class="picwrap">
+				<a href="http://www.iqiyi.com/a_19rrhay4z1.html?vfm=2008_aldbd"><img src="pic2.jpg"></a>
+			</div>
+			
+			<div class="picwrap">
+				<a href="http://www.iqiyi.com/a_19rrhay4z1.html?vfm=2008_aldbd"><img src="pic3.jpg"></a>
+			</div>
+		</div>
+		<div class="midmid">
+			 <div class="midtitle">
+			 	NBA季后赛
+			 </div>
+			 <div class="midcon">
+			 		NBA季后赛至今，各队超级巨星们都有不错的数据表现，截至到今天，在联盟征战15年的老将勒布朗詹姆斯场均得分领跑全联盟，紧随其后的是鹈鹕队戴维斯，勇士队杜兰特，火箭队詹姆斯哈登，雷霆队威少，萌神小学生库里场均仅得到22分无缘场均得分前五。<br />
+			 		一、勒布朗詹姆斯<br />
+			 		本赛季詹姆斯已经打了13场季后赛，身为一名老将的詹姆斯本赛季至今是场均得分前五中出场次数最多的球员，主要因为骑士队首轮面对步行者就陷入困境双方抢七，不过半决赛骑士队横扫猛四场解决系列赛，现在东决骑士队又陷入麻烦，目前他们已经0-2落后凯尔特人，骑士队绝对老大勒布朗詹姆斯在13场比赛中数据非常显眼，詹姆斯季后赛至今场均能得到33.4分9.3个篮板9.2个助攻排行第一。<br />
+			 		二、安东尼戴维斯<br />
+			 		鹈鹕队今年在西部半决赛被勇士队4-1淘汰，浓眉哥戴维斯本赛季在季后赛打了9场球，鹈鹕队在缺少考辛斯的情况下首轮就4-0横扫开拓者，遗憾半决赛中面对强大的勇士队，鹈鹕在系列赛中仅拿到一场胜利，不过鹈鹕队当家球星安东尼戴维斯个人数据表现出色，九场比赛中，安东尼戴维斯场均能拿到30.1分13.7个篮板2.4次盖帽，这数据仅次于勒布朗詹姆斯暂时排行第二。<br />
+			 		三、凯文杜兰特<br />
+			 		坐拥四巨头的勇士队目前和火箭在西决中打得火热，本赛季至今，勇士在季后赛中已经打了12场比赛，首轮勇士4-1淘汰马刺，次轮4-1淘汰鹈鹕，目前西决和火箭战成1-1平，其中杜兰特全部出战了这12场比赛，由于首轮库里受伤未能出战，被称为勇士核武器的杜兰特数据抢眼，他场均能得到29.6分7.1个篮板4.3个助攻，场均得分暂时排在季后赛第三。<br />
+			 		四、詹姆斯哈登<br />
+			 		本赛季至今，火箭队同样打了12场比赛，首轮火箭4-1淘汰森林狼，半决赛4-1淘汰爵士，西部决赛目前和勇士战成1-1平，可以说，今年有保罗的加入之后，火箭队可谓高歌猛进，他们被称为最有可能挑战勇士的一支强队，球队当家球星詹姆斯哈登在12场比赛中表现出色，场均能得到29.4分5.3个篮板和7次助攻，目前是季后赛场均得分排行第四。<br />
+			 		五、拉塞尔-韦斯布鲁克<br />
+			 		要说威少季后赛数据，他数据上无可挑剔，但遗憾的是，季后赛场均得分前五的巨星当中，威少是最早被淘汰回家钓鱼的球星，雷霆队拥有三巨头在季后赛首轮就被爵士队4-2淘汰略显尴尬，在六场比赛当中，威少场均能得到29.3分12个篮板7.5次助攻
+			 
+			 </div>
+		</div>
+	</div>
+</div>
+</div>
 
 <script>
 function Star(id, x, y){
