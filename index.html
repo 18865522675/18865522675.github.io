@@ -197,7 +197,15 @@ background-image:url('img/xkbg.png');
 
 <script>
 	var aaduio=document.getElementById("audio");
-	aaduio.play()
+//	aaduio.play()
+//	aaduio.click()
+
+	document.body.onclick=function(){
+//		alert(1)
+		aaduio.play()
+	}
+	
+	document.body.click()
 function Star(id, x, y){
 	this.id = id;
 	this.x = x;
