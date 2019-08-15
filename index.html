@@ -41,7 +41,7 @@ html,body {
 	height:100%;
 	/*background-image:url(https://openclipart.org/image/2400px/svg_to_png/250847/Trees-Landscape-Silhouette.png);
 	*/
-background-image:url('img/xkbg.png');
+background-image:url('xkbg.png');
 	background-size:1000px 250px;
 	background-repeat:repeat-x;
 	background-position:center bottom;
@@ -160,6 +160,9 @@ background-image:url('img/xkbg.png');
 	height: 66px;
 	width:73px
 }
+.itemWrap{
+	border: 1px solid gray;
+}
 
 
 </style>
@@ -174,11 +177,14 @@ background-image:url('img/xkbg.png');
 
 <div class="con">
 	<div class="leaveWord">
-		<div class="levelCon">
+		<div style="text-align: center;font-size: 20px;color:white;">
+			留言板
+		</div>
+		<div class="levelCon" id="levelCon">
 			
 		</div>
 		<div class="clear" style="margin-top:30px">
-			<textarea row="3"></textarea><button>留言</button>
+			<textarea row="3" id="noteText"></textarea><button id="insertBtn">留言</button>
 		</div>
 	</div>
 	<div class="header clear" style="text-align: center!important;position: relative;height: 150px;">
@@ -188,7 +194,7 @@ background-image:url('img/xkbg.png');
 		<div class="title">
 			朱斌杰博客
 		</div>
-		<div class="subtitle">
+		<div class="subtitle">s
 			记录生活，点点滴滴
 			<br />
 			本人是一个前端代码狗,95年生,未婚<br />
@@ -226,7 +232,7 @@ background-image:url('img/xkbg.png');
 			 		本赛季至今，火箭队同样打了12场比赛，首轮火箭4-1淘汰森林狼，半决赛4-1淘汰爵士，西部决赛目前和勇士战成1-1平，可以说，今年有保罗的加入之后，火箭队可谓高歌猛进，他们被称为最有可能挑战勇士的一支强队，球队当家球星詹姆斯哈登在12场比赛中表现出色，场均能得到29.4分5.3个篮板和7次助攻，目前是季后赛场均得分排行第四。<br />
 			 		五、拉塞尔-韦斯布鲁克<br />
 			 		要说威少季后赛数据，他数据上无可挑剔，但遗憾的是，季后赛场均得分前五的巨星当中，威少是最早被淘汰回家钓鱼的球星，雷霆队拥有三巨头在季后赛首轮就被爵士队4-2淘汰略显尴尬，在六场比赛当中，威少场均能得到29.3分12个篮板7.5次助攻
-			 
+			 		
 			 </div>
 		</div>
 	</div>
@@ -234,6 +240,39 @@ background-image:url('img/xkbg.png');
 </div>
 
 <script>
+	
+	
+    const apiServer="http://127.0.0.1:8089";
+   
+//  console.log(1223)
+	const $request=(url,method='GET',data,cb)=>{
+		var ajax = new XMLHttpRequest();
+		var method=method||'GET';
+		var ajaxUrl=url;
+		if(method=='GET'){
+		  if(data){
+		  	ajaxUrl+="?";
+		  	 for(let i in data){
+	      		ajxaUrl+=i+'='+data[i]
+	     	 }
+		  }
+		  ajax.open('GET',ajaxUrl,true);
+		  ajax.send()
+		}else{
+		 ajax.open('POST',url,true);		
+		 ajax.send(data)	
+		}
+		
+		ajax.onreadystatechange = function () {
+		   if (ajax.readyState==4 &&ajax.status==200) {
+//		　　　　console.log(ajax.responseText);//输入相应的内容
+//				console.log(JSON.parse(ajax.response))
+				cb&cb(JSON.parse(ajax.response))
+		  　　}
+		}
+//		ajax.send(data)
+	}
+	
 	var aaduio=document.getElementById("audio");
 //	aaduio.play()
 //	aaduio.click()
@@ -244,6 +283,46 @@ background-image:url('img/xkbg.png');
 	}
 	
 	document.body.click()
+	
+	
+	
+	
+	var  getInfo=()=>{
+		var wrap=document.getElementById("levelCon");
+		wrap.innerHTML="";
+		$request(apiServer+'/getList','GET',null,function(data){
+		
+//		console.log(data);
+		for(let i=0;i<data.length;i++){
+			let oflag=document.createElement("div");
+			oflag.innerHTML=`<div class='itemWrap' style='overflow:hidden;line-height:20px!important;color:white;margin-top:10px'>
+			<span style='float:left'>${data[i].userName} : </span>
+			<div style='box-sizing:border-box;padding-left:30px'>${data[i].note}</div>
+			<div style='float:right'>${data[i].createTime}</div>
+			</div>`;
+			wrap.appendChild(oflag)
+		}
+		
+	})
+	}
+	getInfo();
+	const insertBtn=document.getElementById("insertBtn");
+	insertBtn.onclick=function(){
+		let noteText=document.getElementById("noteText");
+//		alert(noteText.value)
+		$request(apiServer+'/insert?note='+noteText.value,"POST",JSON.stringify({
+			note:noteText.value
+		}),function(data){
+//			alert("留言成功")
+//			alert(JSON.parse(d))
+			noteText.value="";
+			if(data.resultCode==200){
+				alert(data.resultMsg);
+//				window.
+				getInfo()
+			}
+		})
+	}
 function Star(id, x, y){
 	this.id = id;
 	this.x = x;
